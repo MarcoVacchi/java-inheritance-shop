@@ -30,8 +30,9 @@ public class Smartphone extends Prodotto {
     }
 
     @Override
-    public String getInfo() {
-        String info = super.getInfo() +
+
+    public String toString() {
+        String info = super.toString() +
                 "Codice: " +
                 this.codiceImei +
                 " " +
@@ -39,5 +40,4 @@ public class Smartphone extends Prodotto {
                 this.memoria;
         return info;
     }
-
-}
+};

@@ -29,8 +29,8 @@ public class Cuffie extends Prodotto {
     }
 
     @Override
-    public String getInfo() {
-        String info = super.getInfo() +
+    public String toString() {
+        String info = super.toString() +
                 " " +
                 "Colore: " +
                 this.colore +

@@ -40,7 +40,7 @@ public class Televisori extends Prodotto {
     }
 
     @Override
-    public String getInfo() {
+    public String toString() {
         String info = "Dimensioni: " + this.larghezza + "x"
                 + this.altezza + "cm ";
         if (isSmart == true) {
@@ -48,6 +48,6 @@ public class Televisori extends Prodotto {
         } else {
             info += "Questo televisore non è smart";
         }
-        return super.getInfo() + info;
+        return super.toString() + info;
     }
 }
