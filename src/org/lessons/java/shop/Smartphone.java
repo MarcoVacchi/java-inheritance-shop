@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public class Smartphone extends Prodotto {
 
     public String codiceImei;
-    public int memoria;
+    public String memoria;
 
-    public Smartphone(String nome, String marca, BigDecimal prezzo, String codiceImei, int memoria) {
+    public Smartphone(String nome, String marca, BigDecimal prezzo, String codiceImei, String memoria) {
         super(nome, marca, prezzo);
         this.codiceImei = codiceImei;
         this.memoria = memoria;
@@ -21,11 +21,11 @@ public class Smartphone extends Prodotto {
         this.codiceImei = codiceImei;
     }
 
-    public int getMemoria() {
+    public String getMemoria() {
         return this.memoria;
     }
 
-    public void setMemoria(int memoria) {
+    public void setMemoria(String memoria) {
         this.memoria = memoria;
     }
 

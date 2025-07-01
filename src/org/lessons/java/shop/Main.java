@@ -7,7 +7,7 @@ public class Main {
 
         // -------------TELEFONO--------------;
         System.out.println("-----------------TELEFONO-------------");
-        Smartphone telefono = new Smartphone("S-20", "Samsung", new BigDecimal(222), "328837372", 32);
+        Smartphone telefono = new Smartphone("S-20", "Samsung", new BigDecimal(222), "328837372", "32GB");
 
         System.out.println(telefono.toString());
         System.out.println();
@@ -27,7 +27,7 @@ public class Main {
 
         System.out.println(cuffia.toString());
 
-        Prodotto prodotttto = new Smartphone("ss", "ssd", new BigDecimal(22), "ddds", 22);
+        Prodotto prodotttto = new Smartphone("ss", "ssd", new BigDecimal(22), "ddds", "22GB");
         System.out.println(prodotttto.toString());
 
     }

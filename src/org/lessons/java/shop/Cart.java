@@ -28,6 +28,7 @@ public class Cart {
             } else {
                 System.out.println("Articolo non presente nel nostro negozio!");
             }
+
             // System.out.println(cart.length);
         }
         stampaCarrello();
@@ -68,7 +69,6 @@ public class Cart {
         Cuffie cuffia = new Cuffie(name, marca, prezzo, colore, isWireless);
         isComplete = answerUser();
         addToCart(cuffia);
-
     }
 
     public static void addTelevisori() {
@@ -109,7 +109,7 @@ public class Cart {
         String codiceImei = input.nextLine();
 
         System.out.print("Scrivi memoria(GB) prodotto: ");
-        int memoria = input.nextInt();
+        String memoria = input.nextLine();
 
         Smartphone telefono = new Smartphone(name, marca, prezzo, codiceImei, memoria);
         isComplete = answerUser();
@@ -130,3 +130,12 @@ public class Cart {
     }
 
 }
+
+// Bonus:
+// Aggiungete alla classe Prodotto un metodo per il calcolo del prezzo scontato
+// per clienti con tessera fedeltà, che applica al prezzo uno sconto del 2%.
+// Per gli Smartphone, lo sconto è del 5% se la quantità di memoria è inferiore
+// a 32GB, altrimenti rimane del 2%.
+
+// Per i Televisori lo sconto è del 10% se la televisione non è smart,
+// altrimenti rimane del 2%.
