@@ -1,33 +1,24 @@
- package org.lessons.java.shop;
+package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Televisori extends Prodotto {
-    private int larghezza;
-    private int altezza;
+    private int pollici;
     private boolean isSmart;
 
-    public Televisori(String nome, String marca, BigDecimal prezzo, int larghezza, int altezza, boolean isSmart) {
+    public Televisori(String nome, String marca, BigDecimal prezzo, int pollici, boolean isSmart) {
         super(nome, marca, prezzo);
-        this.larghezza = larghezza;
-        this.altezza = altezza;
+        this.pollici = pollici;
         this.isSmart = isSmart;
     }
 
-    public int getLarghezza() {
-        return this.larghezza;
+    public int getPollici() {
+        return this.pollici;
     }
 
-    public void setLarghezza(int larghezza) {
-        this.larghezza = larghezza;
-    }
-
-    public int getaltezza() {
-        return this.altezza;
-    }
-
-    public void setaltezza(int altezza) {
-        this.altezza = altezza;
+    public void setPollici(int pollici) {
+        this.pollici = pollici;
     }
 
     public boolean getIfIsSmart() {
@@ -40,9 +31,18 @@ public class Televisori extends Prodotto {
     }
 
     @Override
+    public BigDecimal getPrezzoScontato() {
+        if (!isSmart) {
+            BigDecimal sconto = new BigDecimal("0.10");
+            return prezzo.subtract(prezzo.multiply(sconto)).setScale(2, RoundingMode.DOWN);
+        } else {
+            return super.getPrezzoScontato();
+        }
+    }
+
+    @Override
     public String toString() {
-        String info = "Dimensioni: " + this.larghezza + "x"
-                + this.altezza + "cm ";
+        String info = "Pollici: " + this.pollici + " pollici ";
         if (isSmart == true) {
             info += "Questo televisore è smart";
         } else {

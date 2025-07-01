@@ -1,13 +1,14 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Smartphone extends Prodotto {
 
     public String codiceImei;
-    public String memoria;
+    public int memoria;
 
-    public Smartphone(String nome, String marca, BigDecimal prezzo, String codiceImei, String memoria) {
+    public Smartphone(String nome, String marca, BigDecimal prezzo, String codiceImei, int memoria) {
         super(nome, marca, prezzo);
         this.codiceImei = codiceImei;
         this.memoria = memoria;
@@ -21,12 +22,22 @@ public class Smartphone extends Prodotto {
         this.codiceImei = codiceImei;
     }
 
-    public String getMemoria() {
+    public int getMemoria() {
         return this.memoria;
     }
 
-    public void setMemoria(String memoria) {
+    public void setMemoria(int memoria) {
         this.memoria = memoria;
+    }
+
+    @Override
+    public BigDecimal getPrezzoScontato() {
+        if (memoria < 32) {
+            BigDecimal sconto = new BigDecimal("0.05");
+            return prezzo.subtract(prezzo.multiply(sconto)).setScale(2, RoundingMode.DOWN);
+        } else {
+            return super.getPrezzoScontato();
+        }
     }
 
     @Override
@@ -37,7 +48,8 @@ public class Smartphone extends Prodotto {
                 this.codiceImei +
                 " " +
                 "Memoria: " +
-                this.memoria;
+                this.memoria +
+                "GB";
         return info;
     }
 };

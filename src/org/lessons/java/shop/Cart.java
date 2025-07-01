@@ -9,11 +9,18 @@ public class Cart {
     private static Prodotto[] cart = new Prodotto[0];
     private static int cartIndex = 0;
     private static boolean isComplete = true;
+    private static boolean hasFidelty = false;
 
     public static void main(String[] args) {
 
+        System.out.print("Possiedi la carta fedeltà? (true/false): ");
+        hasFidelty = input.nextBoolean();
+        input.nextLine();
+
         while (isComplete) {
+
             System.out.print("Inserisci un articolo fra cuffie, televisori o e smartphone: ");
+
             String name = input.nextLine();
 
             if (name.equalsIgnoreCase("cuffie")) {
@@ -45,8 +52,22 @@ public class Cart {
     }
 
     public static void stampaCarrello() {
+        BigDecimal totale = BigDecimal.ZERO;
+        BigDecimal totaleScontato = BigDecimal.ZERO;
+
         for (Prodotto prodotto : cart) {
             System.out.println(prodotto.toString());
+            totale = totale.add(prodotto.getPrezzo());
+
+            if (hasFidelty) {
+                totaleScontato = totaleScontato.add(prodotto.getPrezzoScontato());
+            }
+        }
+
+        System.out.println("Totale carrello (senza sconto): " + totale + "$");
+
+        if (hasFidelty) {
+            System.out.println("Totale carrello (con sconto fedeltà): " + totaleScontato + "$");
         }
     }
 
@@ -59,7 +80,9 @@ public class Cart {
 
         System.out.print("Scrivi prezzo prodotto: ");
         BigDecimal prezzo = input.nextBigDecimal();
+
         input.nextLine();
+
         System.out.print("Scrivi colore prodotto: ");
         String colore = input.nextLine();
 
@@ -81,16 +104,15 @@ public class Cart {
         System.out.print("Scrivi prezzo prodotto: ");
         BigDecimal prezzo = input.nextBigDecimal();
 
-        System.out.print("Scrivi larghezza prodotto: ");
-        int larghezza = input.nextInt();
+        System.out.print("Scrivi pollici televisore: ");
+        int pollici = input.nextInt();
 
-        System.out.print("Scrivi altezza prodotto: ");
-        int altezza = input.nextInt();
+        input.nextLine();
 
         System.out.print("Scrivi se sarà smart: ");
         boolean isSmart = input.nextBoolean();
 
-        Televisori tv = new Televisori(name, marca, prezzo, larghezza, altezza, isSmart);
+        Televisori tv = new Televisori(name, marca, prezzo, pollici, isSmart);
         isComplete = answerUser();
         addToCart(tv);
     }
@@ -109,11 +131,12 @@ public class Cart {
         String codiceImei = input.nextLine();
 
         System.out.print("Scrivi memoria(GB) prodotto: ");
-        String memoria = input.nextLine();
+        int memoria = input.nextInt();
 
         Smartphone telefono = new Smartphone(name, marca, prezzo, codiceImei, memoria);
         isComplete = answerUser();
         addToCart(telefono);
+
     }
 
     public static boolean answerUser() {
@@ -128,14 +151,4 @@ public class Cart {
 
         return false;
     }
-
 }
-
-// Bonus:
-// Aggiungete alla classe Prodotto un metodo per il calcolo del prezzo scontato
-// per clienti con tessera fedeltà, che applica al prezzo uno sconto del 2%.
-// Per gli Smartphone, lo sconto è del 5% se la quantità di memoria è inferiore
-// a 32GB, altrimenti rimane del 2%.
-
-// Per i Televisori lo sconto è del 10% se la televisione non è smart,
-// altrimenti rimane del 2%.
