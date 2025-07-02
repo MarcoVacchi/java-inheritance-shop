@@ -7,10 +7,10 @@ import java.util.Random;
 public class Prodotto {
 
     private int codice;
-    public String nome;
-    public String marca;
-    public BigDecimal prezzo;
-    public BigDecimal iva;
+    protected String nome;
+    protected String marca;
+    protected BigDecimal prezzo;
+    protected BigDecimal iva;
 
     protected Prodotto(String nome, String marca, BigDecimal prezzo) {
         Random random = new Random();

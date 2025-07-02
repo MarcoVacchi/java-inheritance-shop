@@ -5,8 +5,8 @@ import java.math.RoundingMode;
 
 public class Smartphone extends Prodotto {
 
-    public String codiceImei;
-    public int memoria;
+    private String codiceImei;
+    private int memoria;
 
     public Smartphone(String nome, String marca, BigDecimal prezzo, String codiceImei, int memoria) {
         super(nome, marca, prezzo);
