@@ -9,17 +9,16 @@ public class Cart {
     private static Prodotto[] cart = new Prodotto[0];
     private static int cartIndex = 0;
     private static boolean isComplete = true;
-    private static boolean hasFidelty = false;
+    private static String hasFidelty;
 
     public static void main(String[] args) {
 
-        System.out.print("Possiedi la carta fedeltà? (true/false): ");
-        hasFidelty = input.nextBoolean();
-        input.nextLine();
+        System.out.print("Possiedi la carta fedeltà? (IMMETI CODICE): ");
+        hasFidelty = input.nextLine();
 
         while (isComplete) {
 
-            System.out.print("Inserisci un articolo fra cuffie, televisori o e smartphone: ");
+            System.out.print("Inserisci un articolo! (fra cuffie, televisori o e smartphone): ");
 
             String name = input.nextLine();
 
@@ -35,8 +34,6 @@ public class Cart {
             } else {
                 System.out.println("Articolo non presente nel nostro negozio!");
             }
-
-            // System.out.println(cart.length);
         }
         stampaCarrello();
     }
@@ -54,21 +51,32 @@ public class Cart {
     public static void stampaCarrello() {
         BigDecimal totale = BigDecimal.ZERO;
         BigDecimal totaleScontato = BigDecimal.ZERO;
+        String[] arrayFidelty = { "DKSS3722", "FASA9201", "AHSH1492", "LKJDK1021", "GPODJ8251", };
+
+        boolean hasValidFidelity = false;
+        for (String code : arrayFidelty) {
+            if (code.equals(hasFidelty)) {
+                hasValidFidelity = true;
+                break;
+            }
+        }
 
         for (Prodotto prodotto : cart) {
             System.out.println(prodotto.toString());
             totale = totale.add(prodotto.getPrezzo());
 
-            if (hasFidelty) {
+            if (hasValidFidelity) {
                 totaleScontato = totaleScontato.add(prodotto.getPrezzoScontato());
             }
         }
-
-        System.out.println("Totale carrello (senza sconto): " + totale + "$");
-
-        if (hasFidelty) {
-            System.out.println("Totale carrello (con sconto fedeltà): " + totaleScontato + "$");
+        if (!hasValidFidelity) {
+            System.out.println("Codice sconto non valido! Carrello (senza sconto): " + totale + "$");
         }
+
+        if (hasValidFidelity) {
+            System.out.println("Codice sconto valido! Totale carrello (con sconto fedeltà): " + totaleScontato + "$");
+        }
+
     }
 
     public static void addCuffie() {
@@ -86,7 +94,7 @@ public class Cart {
         System.out.print("Scrivi colore prodotto: ");
         String colore = input.nextLine();
 
-        System.out.print("Scrivi se sarà wireless: ");
+        System.out.print("Scrivi se sarà wireless(true/false): ");
         boolean isWireless = input.nextBoolean();
 
         Cuffie cuffia = new Cuffie(name, marca, prezzo, colore, isWireless);
@@ -109,7 +117,7 @@ public class Cart {
 
         input.nextLine();
 
-        System.out.print("Scrivi se sarà smart: ");
+        System.out.print("Scrivi se sarà smart(true/false): ");
         boolean isSmart = input.nextBoolean();
 
         Televisori tv = new Televisori(name, marca, prezzo, pollici, isSmart);
